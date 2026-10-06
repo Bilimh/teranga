@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TERANGA — De la terre à de nouveaux horizons</title>
+    <meta name="description"
+        content="Vente, transformation et exportation de produits agricoles. Découvrez notre sélection et préparez votre demande professionnelle.">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231b3328'/%3E%3Cpath d='M16 26V12M16 19Q3 17 7 7Q17 7 16 19M16 15Q16 4 26 5Q27 15 16 15' fill='none' stroke='%23e7ca83' stroke-width='2'/%3E%3C/svg%3E">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+
+        :root {
+            --ink: #1b3328;
+            --paper: #f4f3ed;
+            --gold: #e7ca83;
+            --line: #cfd3c9
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit
+        }
+
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            outline-offset: 5px
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--ink)
+        }
+
+        header {
+            height: 94px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            width: 100%;
+            color: white;
+            border-bottom: 1px solid #ffffff35
+        }
+
+        .brand {
+            font-family: Manrope, sans-serif;
+            font-size: 27px;
+            font-weight: 600;
+            letter-spacing: 5px
+        }
+
+        .brand small {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 3px;
+            font-weight: 400;
+            margin-top: 4px
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px
+        }
+
+        .navcta {
+            border: 1px solid #ffffff90;
+            padding: 13px 22px;
+            border-radius: 30px
+        }
+
+        #menu {
+            display: none;
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            border-radius: 24px;
+            padding: 10px 15px
+        }
+
+        .hero {
+            min-height: 790px;
+            height: 100svh;
+            max-height: 1100px;
+            position: relative;
+            background: #173526;
+            color: white;
+            overflow: hidden
+        }
+
+        .hero>img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .shade {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #092019b8, #09201925), linear-gradient(0deg, #0c231bab, transparent 65%)
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 205px 7% 115px;
+            max-width: 1120px
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px
+        }
+
+        .eyebrow:before {
+            content: '';
+            width: 35px;
+            height: 1px;
+            background: currentColor
+        }
+
+        h1 {
+            font-family: Manrope, sans-serif;
+            font-size: clamp(56px, 7.3vw, 110px);
+            line-height: 1.02;
+            font-weight: 400;
+            letter-spacing: -5px;
+            margin: 30px 0
+        }
+
+        h1 em,
+        h2 em {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: var(--gold)
+        }
+
+        .hero p {
+            max-width: 380px;
+            line-height: 1.7;
+            color: #e7ece5;
+            margin: 27px 0
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold);
+            color: var(--ink);
+            border: 0;
+            border-radius: 40px;
+            padding: 17px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform .25s, background .25s
+        }
+
+        .pill:hover {
+            transform: translateY(-3px);
+            background: #f4dda4
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 32px;
+            left: 5%;
+            right: 5%;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ffffff55;
+            padding-top: 23px;
+            font-size: 12px;
+            letter-spacing: 1px
+        }
+
+        .hero-bottom span:last-child {
+            color: #cdd8cb
+        }
+
+        .strip {
+            padding: 27px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            background: var(--ink);
+            color: #d8dfd4;
+            font-size: 13px
+        }
+
+        .strip b {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--gold)
+        }
+
+        .section {
+            padding: 110px 7%
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 70px
+        }
+
+        .section .eyebrow {
+            color: #6b776b
+        }
+
+        h2 {
+            font-family: Manrope, sans-serif;
+            font-size: clamp(36px, 4.2vw, 64px);
+            line-height: 1.12;
+            font-weight: 400;
+            letter-spacing: -2px;
+            margin: 0 0 30px
+        }
+
+        h2 em {
+            color: #71804d
+        }
+
+        .intro p {
+            max-width: 590px;
+            line-height: 1.8;
+            color: #5f6d62
+        }
+
+        .intro .signature {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--ink);
+            border-top: 1px solid var(--line);
+            padding-top: 25px;
+            display: flex;
+            gap: 30px
+        }
+
+        .activities {
+            padding-top: 0
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 45px
+        }
+
+        .section-heading h2 {
+            margin-bottom: 0
+        }
+
+        .section-heading>p {
+            max-width: 300px;
+            line-height: 1.7;
+            color: #657064
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line)
+        }
+
+        .service {
+            padding: 35px 32px 35px 0
+        }
+
+        .service+.service {
+            border-left: 1px solid var(--line);
+            padding-left: 32px
+        }
+
+        .number {
+            font-size: 13px;
+            color: #78836f;
+            letter-spacing: 2px
+        }
+
+        .service h3 {
+            font-family: Manrope, sans-serif;
+            font-weight: 400;
+            font-size: 30px;
+            letter-spacing: -1px;
+            margin: 42px 0 18px
+        }
+
+        .service p {
+            line-height: 1.75;
+            color: #657064;
+            font-size: 15px
+        }
+
+        .service ul {
+            padding: 0;
+            list-style: none;
+            font-size: 14px;
+            line-height: 2.3;
+            color: #334f39
+        }
+
+        .products {
+            background: #e7eadf
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 35px 0
+        }
+
+        .filter {
+            background: transparent;
+            border: 1px solid #a7b2a0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--ink)
+        }
+
+        .filter[aria-pressed=true] {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink)
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px
+        }
+
+        .product {
+            border-bottom: 1px solid #b9c3b1;
+            padding-bottom: 25px
+        }
+
+        .product[hidden] {
+            display: none
+        }
+
+        .product-visual {
+            height: 265px;
+            display: flex;
+            align-items: end;
+            position: relative;
+            padding: 23px;
+            overflow: hidden;
+            background: #b7c7a0
+        }
+
+        .product-visual:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('orchard.webp');
+            background-size: cover;
+            filter: saturate(.65);
+            opacity: .75;
+            transition: transform .7s
+        }
+
+        .product:nth-child(2) .product-visual {
+            background: #815a2e
+        }
+
+        .product:nth-child(2) .product-visual:before {
+            background-position: 80%;
+            filter: sepia(.9)
+        }
+
+        .product:nth-child(3) .product-visual {
+            background: #482724
+        }
+
+        .product:nth-child(3) .product-visual:before {
+            filter: sepia(.7) hue-rotate(310deg);
+            background-position: 30%
+        }
+
+        .product-visual:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, #102e1ea6)
+        }
+
+        .product:hover .product-visual:before {
+            transform: scale(1.08)
+        }
+
+        .product-visual span {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px
+        }
+
+        .product h3 {
+            font-family: Manrope, sans-serif;
+            font-size: 27px;
+            font-weight: 400;
+            margin: 22px 0 10px
+        }
+
+        .product p {
+            font-size: 14px;
+            color: #58684f;
+            line-height: 1.7
+        }
+
+        .product button {
+            padding: 8px 0;
+            border: 0;
+            border-bottom: 1px solid #1b3328;
+            background: none;
+            color: var(--ink);
+            font-size: 14px
+        }
+
+        .landscape {
+            height: 470px;
+            position: relative;
+            overflow: hidden;
+            background: #1b3328
+        }
+
+        .landscape img {
+            height: 130%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center 70%;
+            opacity: .7
+        }
+
+        .landscape p {
+            position: absolute;
+            left: 7%;
+            bottom: 50px;
+            margin: 0;
+            font-size: clamp(32px, 4vw, 58px);
+            color: white;
+            font-family: Georgia, serif;
+            font-style: italic;
+            max-width: 670px
+        }
+
+        .export {
+            background: var(--ink);
+            color: var(--paper);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px
+        }
+
+        .export .eyebrow {
+            color: var(--gold);
+            margin-bottom: 35px
+        }
+
+        .export h2 em {
+            color: var(--gold)
+        }
+
+        .export p {
+            color: #becbbd;
+            line-height: 1.8
+        }
+
+        .steps {
+            border-top: 1px solid #ffffff35
+        }
+
+        .step {
+            border-bottom: 1px solid #ffffff35;
+            padding: 23px 0;
+            display: grid;
+            grid-template-columns: 45px 1fr;
+            gap: 15px
+        }
+
+        .step b {
+            font-weight: 400;
+            color: var(--gold);
+            font-size: 13px;
+            padding-top: 5px
+        }
+
+        .step h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin: 0 0 10px
+        }
+
+        .step p {
+            font-size: 14px;
+            margin: 0
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px
+        }
+
+        .contact .eyebrow {
+            margin-bottom: 30px
+        }
+
+        .contact p {
+            line-height: 1.8;
+            color: #657064;
+            max-width: 400px
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px
+        }
+
+        label {
+            font-size: 14px;
+            display: block
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 0;
+            border: 0;
+            border-bottom: 1px solid #aab5a4;
+            border-radius: 0;
+            background: transparent;
+            color: var(--ink);
+            margin-top: 8px;
+            min-height: 45px
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        .wide {
+            grid-column: 1/-1
+        }
+
+        form .pill {
+            justify-self: start
+        }
+
+        #result {
+            font-size: 14px;
+            line-height: 1.7;
+            white-space: pre-wrap
+        }
+
+        #copy {
+            display: none
+        }
+
+        footer {
+            background: var(--ink);
+            padding: 55px 7% 25px;
+            color: var(--paper)
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .footer-top p {
+            color: #bfccbc;
+            font-size: 14px
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ffffff30;
+            margin-top: 45px;
+            padding-top: 23px;
+            display: flex;
+            justify-content: space-between;
+            color: #bfccbc;
+            font-size: 12px
+        }
+
+        .footer-bottom a {
+            text-decoration: underline
+        }
+
+        .detail {
+            border: 0;
+            padding: 40px;
+            max-width: 600px;
+            width: calc(100% - 35px);
+            background: var(--paper);
+            color: var(--ink)
+        }
+
+        dialog::backdrop {
+            background: #102519bb;
+            backdrop-filter: blur(5px)
+        }
+
+        .close {
+            float: right;
+            border: 1px solid var(--line);
+            background: none;
+            border-radius: 30px;
+            padding: 8px 14px
+        }
+
+        .detail h2 {
+            font-size: 40px;
+            margin-top: 35px
+        }
+
+        .detail p {
+            line-height: 1.8
+        }
+
+        .detail dl {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            font-size: 14px;
+            line-height: 1.8
+        }
+
+        .detail dd {
+            margin: 0
+        }
+
+        .detail .pill {
+            margin-top: 20px
+        }
+
+        @media(min-width:1500px) {
+            .hero-content {
+                padding-top: 245px
+            }
+        }
+
+        @media(max-width:900px) {
+            header {
+                height: 85px
+            }
+
+            nav {
+                gap: 15px
+            }
+
+            nav a:not(.navcta) {
+                display: none
+            }
+
+            .intro {
+                gap: 30px;
+                grid-template-columns: 1fr
+            }
+
+            .export,
+            .contact {
+                gap: 45px
+            }
+
+            .section {
+                padding: 75px 6%
+            }
+
+            .activities {
+                padding-top: 0
+            }
+
+            .service h3 {
+                font-size: 25px
+            }
+
+            .catalog {
+                gap: 15px
+            }
+
+            .product-visual {
+                height: 215px
+            }
+
+            .hero-content {
+                padding-top: 210px
+            }
+
+            h1 {
+                letter-spacing: -3px
+            }
+
+            .brand {
+                font-size: 23px
+            }
+
+            .strip {
+                font-size: 12px
+            }
+        }
+
+        @media(max-width:640px) {
+            header {
+                padding: 0 6%
+            }
+
+            .brand small {
+                font-size: 9px
+            }
+
+            #menu {
+                display: block
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                right: 0;
+                background: var(--ink);
+                padding: 25px;
+                flex-direction: column;
+                align-items: stretch
+            }
+
+            nav.open {
+                display: flex
+            }
+
+            nav.open a {
+                display: block;
+                padding: 12px
+            }
+
+            .hero {
+                min-height: 720px;
+                max-height: 900px
+            }
+
+            .hero-content {
+                padding: 180px 6% 120px
+            }
+
+            h1 {
+                font-size: 58px;
+                letter-spacing: -3px
+            }
+
+            .hero p {
+                font-size: 15px
+            }
+
+            .hero-bottom {
+                left: 6%;
+                right: 6%;
+                font-size: 10px
+            }
+
+            .hero-bottom span:last-child {
+                display: none
+            }
+
+            .strip {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px
+            }
+
+            .strip b {
+                font-size: 16px
+            }
+
+            .section-heading {
+                display: block
+            }
+
+            .section-heading>p {
+                max-width: 100%
+            }
+
+            .services,
+            .catalog,
+            .export,
+            .contact {
+                grid-template-columns: 1fr
+            }
+
+            .service {
+                padding: 28px 0
+            }
+
+            .service+.service {
+                border-left: 0;
+                border-top: 1px solid var(--line);
+                padding: 28px 0
+            }
+
+            .service h3 {
+                margin-top: 20px;
+                font-size: 30px
+            }
+
+            .service ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0 20px
+            }
+
+            .product-visual {
+                height: 260px
+            }
+
+            .catalog {
+                gap: 35px
+            }
+
+            .landscape {
+                height: 350px
+            }
+
+            .landscape p {
+                bottom: 35px;
+                right: 6%
+            }
+
+            .export,
+            .contact {
+                gap: 40px
+            }
+
+            .footer-top {
+                display: block
+            }
+
+            .footer-bottom {
+                gap: 20px;
+                line-height: 1.6
+            }
+
+            .eyebrow {
+                font-size: 11px;
+                letter-spacing: 2px
+            }
+
+            h2 {
+                letter-spacing: -1.5px
+            }
+
+            form {
+                gap: 20px 15px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *:before {
+                transition: none !important
+            }
+        }
+
+        /* Organic masonry: golden-ratio columns, varied natural tile heights. */
+        .catalog {
+            grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr) minmax(0, 1fr);
+            grid-auto-rows: 8px;
+            gap: 20px;
+            align-items: start;
+            transition: height .3s
+        }
+
+        .product {
+            padding: 0;
+            border: 0;
+            min-width: 0;
+            overflow: hidden
+        }
+
+        .tile-content {
+            background: #f4f3ed;
+            padding-bottom: 28px
+        }
+
+        .product h3,
+        .product p,
+        .product button {
+            margin-left: 24px;
+            margin-right: 24px
+        }
+
+        .product button {
+            margin-top: 6px
+        }
+
+        .product-visual {
+            height: 300px
+        }
+
+        .product[data-category=fruit] .product-visual {
+            height: 440px
+        }
+
+        .product[data-category=seed] .product-visual {
+            height: 260px
+        }
+
+        .product[data-category=plant] .product-visual {
+            height: 350px
+        }
+
+        .product-visual:before {
+            filter: saturate(.85)
+        }
+
+        .product[data-category=seed] .product-visual:before {
+            background-position: 90% 30%;
+            filter: saturate(.55)
+        }
+
+        .product[data-category=plant] .product-visual:before {
+            background-position: 10% 80%;
+            filter: saturate(.65)
+        }
+
+        .masonry-note {
+            min-width: 0;
+            overflow: hidden
+        }
+
+        .masonry-note[hidden] {
+            display: none
+        }
+
+        .masonry-note .tile-content {
+            padding: 30px;
+            background: #d1dac2;
+            min-height: 215px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between
+        }
+
+        .masonry-note .eyebrow {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #536747
+        }
+
+        .masonry-note p {
+            font-family: Georgia, serif;
+            font-size: 29px;
+            line-height: 1.2;
+            letter-spacing: -.6px;
+            margin: 35px 0 0
+        }
+
+        .masonry-note.dark .tile-content {
+            background: var(--ink);
+            color: var(--gold);
+            min-height: 250px
+        }
+
+        .masonry-note.dark .eyebrow {
+            color: #c0cbb2
+        }
+
+        .masonry-note.dark p {
+            font-style: italic;
+            font-size: 32px
+        }
+
+        @media(max-width:900px) {
+            .catalog {
+                grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr)
+            }
+
+            .product[data-category=fruit] .product-visual {
+                height: 365px
+            }
+        }
+
+        @media(max-width:640px) {
+            .catalog {
+                grid-template-columns: minmax(0, 1fr);
+                grid-auto-rows: auto;
+                gap: 24px
+            }
+
+            .catalog>* {
+                grid-row-end: auto !important
+            }
+
+            .product[data-category=fruit] .product-visual {
+                height: 340px
+            }
+
+            .product[data-category=seed] .product-visual {
+                height: 235px
+            }
+
+            .product[data-category=plant] .product-visual {
+                height: 285px
+            }
+
+            .masonry-note .tile-content {
+                min-height: 175px
+            }
+
+            .masonry-note.dark .tile-content {
+                min-height: 190px
+            }
+
+            .masonry-note p {
+                margin-top: 25px
+            }
+        }
+
+        .team {
+            background: #edeede
+        }
+
+        .team-heading {
+            margin: 28px 0 48px
+        }
+
+        .team-heading h2 {
+            margin: 0
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 22px
+        }
+
+        .team-member {
+            min-width: 0
+        }
+
+        .person-card {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0 0 20px;
+            background: none;
+            color: var(--ink);
+            border: 0;
+            border-bottom: 1px solid #b9c3b1
+        }
+
+        .person-image {
+            display: block;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: #bdc6b5
+        }
+
+        .person-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(.7);
+            transition: transform .6s, filter .6s
+        }
+
+        .person-card:hover img,
+        .person-card:focus-visible img {
+            transform: scale(1.04);
+            filter: saturate(1)
+        }
+
+        .person-card h3 {
+            font-family: Manrope, sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: -1px;
+            margin: 20px 0 7px
+        }
+
+        .team-role {
+            display: block;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #596651;
+            min-height: 42px
+        }
+
+        .person-more {
+            display: inline-block;
+            margin-top: 17px;
+            font-size: 14px;
+            border-bottom: 1px solid #7a896e;
+            padding-bottom: 4px
+        }
+
+        .team-foot {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 35px
+        }
+
+        .team-foot a {
+            font-size: 14px;
+            border-bottom: 1px solid var(--ink);
+            padding: 8px 0
+        }
+
+        .person-detail {
+            max-width: 720px;
+            padding: 0;
+            max-height: 90svh;
+            overflow: auto
+        }
+
+        .person-detail .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1;
+            background: var(--paper)
+        }
+
+        .person-detail-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr
+        }
+
+        .person-detail-photo {
+            width: 100%;
+            height: 100%;
+            min-height: 430px;
+            object-fit: cover
+        }
+
+        .person-detail-copy {
+            padding: 65px 32px 32px
+        }
+
+        .person-detail h2 {
+            margin: 0 0 10px;
+            font-size: 40px
+        }
+
+        .person-detail .team-role {
+            min-height: 0
+        }
+
+        .person-detail p {
+            font-size: 16px;
+            line-height: 1.65;
+            margin: 24px 0
+        }
+
+        .person-detail ul {
+            padding-left: 18px;
+            font-size: 16px;
+            line-height: 1.65
+        }
+
+        .person-detail li+li {
+            margin-top: 9px
+        }
+
+        .person-detail .pill {
+            margin-top: 12px
+        }
+
+        .team-note {
+            font-size: 12px;
+            color: #657064;
+            margin: 22px 0 0
+        }
+
+        .service p {
+            font-size: 16px
+        }
+
+        @media(max-width:1100px) {
+            .team-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+        }
+
+        @media(max-width:640px) {
+            .team-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 28px 16px
+            }
+
+            .person-card h3 {
+                font-size: 25px
+            }
+
+            .team-role {
+                min-height: 63px
+            }
+
+            .person-detail-layout {
+                grid-template-columns: 1fr
+            }
+
+            .person-detail-photo {
+                height: 230px;
+                min-height: 0;
+                object-position: center 30%
+            }
+
+            .person-detail-copy {
+                padding: 28px
+            }
+
+            .person-detail h2 {
+                font-size: 34px
+            }
+
+            .team-foot {
+                justify-content: flex-start
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header><a href="#" class="brand" aria-label="Teranga accueil">TERANGA<small>AGRICULTURE & EXPORT</small></a>
+        <nav id="nav" aria-label="Navigation principale"><a href="#maison">Notre maison</a><a href="#metiers">Nos
+                métiers</a><a href="#produits">Nos produits</a><a href="#export">À l’international</a><a
+                href="#equipe">Notre équipe</a><a class="navcta" href="#contact">Nous contacter</a></nav><button
+            id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    </header>
+    <main>
+        <section class="hero"><img src="orchard.webp" alt="Vue aérienne d’un verger verdoyant à la lumière du soir"
+                fetchpriority="high">
+            <div class="shade"></div>
+            <div class="hero-content">
+                <!--<div class="eyebrow">La terre nous relie</div>-->
+                <h1>Des racines fortes.<br>De nouveaux<br><em>horizons.</em></h1>
+                <p>Produits agricoles. Vente, transformation et exportation.</p><a class="pill" href="#produits">Nos
+                    produits</a>
+            </div>
+            <div class="hero-bottom"><a href="#maison">UNE TERRE. UN SAVOIR-FAIRE.</a><span>VENTE · TRANSFORMATION
+                    · EXPORTATION</span></div>
+        </section>
+        <div class="strip"><span>À l’origine, la terre.</span><b>À chaque étape, la valeur.</b><span>À destination,
+                votre confiance.</span></div>
+        <section id="maison" class="section intro">
+            <div class="eyebrow">Notre misson</div>
+            <div>
+                <h2>De la terre<br><em>à votre marché.</em></h2>
+                <p>TERANGA sélectionne, transforme et commercialise des produits agricoles pour les professionnels et
+                    les marchés internationaux.</p>
+                <div class="signature"><span>Une origine</span><span>Un savoir-faire</span><span>Un partenaire</span>
+                </div>
+            </div>
+        </section>
+        <section id="metiers" class="section activities">
+            <div class="section-heading">
+                <h2>De la récolte<br>à votre marché.</h2>
+                <p>Vendre. Transformer. Exporter.</p>
+            </div>
+            <div class="services">
+                <article class="service"><span class="number">01 / SÉLECTIONNER</span>
+                    <h3>Vente & distribution</h3>
+                    <p>Des produits sélectionnés pour les professionnels.</p>
+                    <ul>
+                        <li>Produits bruts</li>
+                        <li>Approvisionnement</li>
+                        <li>Conditionnement adapté</li>
+                    </ul>
+                </article>
+                <article class="service"><span class="number">02 / VALORISER</span>
+                    <h3>Transformation</h3>
+                    <p>Des récoltes valorisées, du séchage au conditionnement.</p>
+                    <ul>
+                        <li>Séchage</li>
+                        <li>Préparation</li>
+                        <li>Formats professionnels</li>
+                    </ul>
+                </article>
+                <article class="service"><span class="number">03 / CONNECTER</span>
+                    <h3>Exportation</h3>
+                    <p>Vos commandes préparées pour l’international.</p>
+                    <ul>
+                        <li>Spécifications produits</li>
+                        <li>Préparation des commandes</li>
+                        <li>Coordination logistique</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section id="produits" class="section products">
+            <div class="section-heading">
+                <div class="eyebrow" style="margin-bottom:22px">Notre sélection</div>
+                <h2>La richesse<br><em>à l’état naturel.</em></h2>
+            </div>
+            <div class="filters" role="group" aria-label="Filtrer les produits"><button class="filter" data-filter="all"
+                    aria-pressed="true">Toute la sélection</button><button class="filter" data-filter="fruit"
+                    aria-pressed="false">Fruits</button><button class="filter" data-filter="seed"
+                    aria-pressed="false">Graines</button><button class="filter" data-filter="plant"
+                    aria-pressed="false">Plantes</button></div>
+            <div class="catalog">
+                <article class="product" data-category="fruit">
+                    <div class="tile-content">
+                        <div class="product-visual"><span>Fruits </span></div>
+                        <h3>Mangue</h3>
+                        <p>Fraîche ou séchée.</p><button data-product="Mangue">Voir le produit</button>
+                    </div>
+                </article>
+                <article class="masonry-note" data-category="story">
+                    <div class="tile-content">
+                        <div class="eyebrow">À l’origine</div>
+                        <p>La richesse<br>de nos terres.</p>
+                    </div>
+                </article>
+                <article class="product" data-category="seed">
+                    <div class="tile-content">
+                        <div class="product-visual"><span>Graines </span></div>
+                        <h3>Noix de cajou</h3>
+                        <p>Brute ou décortiquée.</p><button data-product="Noix de cajou">Voir le produit</button>
+                    </div>
+                </article>
+                <article class="product" data-category="plant">
+                    <div class="tile-content">
+                        <div class="product-visual"><span>Plantes </span></div>
+                        <h3>Hibiscus</h3>
+                        <p>Calices séchés pour boissons et infusions.</p><button data-product="Hibiscus">Voir le
+                            produit</button>
+                    </div>
+                </article>
+                <article class="masonry-note dark" data-category="story">
+                    <div class="tile-content">
+                        <div class="eyebrow">Notre conviction</div>
+                        <p>Nos racines.<br>Votre marché.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="landscape" aria-label="Notre lien à la terre"><img src="orchard.webp"
+                alt="Alignement des arbres d’un verger" loading="lazy">
+            <p>Tout commence<br>par la terre.</p>
+        </section>
+        <section id="export" class="section export">
+            <div>
+                <div class="eyebrow">03 / À l’international</div>
+                <h2>Proches de la terre.<br>Ouverts sur<br><em>le monde.</em></h2>
+                <p>Importateurs, distributeurs, transformateurs : un approvisionnement adapté à vos besoins.</p><a
+                    href="#contact" class="pill" style="margin-top:20px">Parlons export</a>
+            </div>
+            <div class="steps">
+                <article class="step"><b>01</b>
+                    <div>
+                        <h3>Votre besoin</h3>
+                        <p>Produit, volume, destination et calendrier.</p>
+                    </div>
+                </article>
+                <article class="step"><b>02</b>
+                    <div>
+                        <h3>Notre offre</h3>
+                        <p>Format, qualité et conditionnement.</p>
+                    </div>
+                </article>
+                <article class="step"><b>03</b>
+                    <div>
+                        <h3>L’expédition</h3>
+                        <p>Logistique et documents précisés avant confirmation.</p>
+                    </div>
+                </article>
+                <article class="step"><b>04</b>
+                    <div>
+                        <h3>Le suivi</h3>
+                        <p>Un interlocuteur pour chaque commande.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section id="equipe" class="section team" aria-labelledby="team-title">
+            <div class="eyebrow">Notre équipe</div>
+            <div class="team-heading">
+                <h2 id="team-title">Les visages<br><em>de TERANGA.</em></h2>
+            </div>
+            <div class="team-grid">
+                <article class="team-member"><button type="button" class="person-card" data-person="0"
+                        aria-haspopup="dialog" aria-label="Découvrir le rôle de Badou"><span class="person-image"><img
+                                src="person-0.webp" alt="Portrait d’illustration de Badou" loading="lazy" width="480"
+                                height="640"></span>
+                        <h3>Badou</h3><span class="team-role">Directeur général</span><span
+                            class="person-more">Découvrir son rôle</span>
+                    </button></article>
+                <article class="team-member"><button type="button" class="person-card" data-person="1"
+                        aria-haspopup="dialog" aria-label="Découvrir le rôle de Habib"><span class="person-image"><img
+                                src="person-1.webp" alt="Portrait d’illustration de Habib" loading="lazy" width="480"
+                                height="640"></span>
+                        <h3>Habib</h3><span class="team-role">Responsable commercial</span><span
+                            class="person-more">Découvrir son rôle</span>
+                    </button></article>
+                <article class="team-member"><button type="button" class="person-card" data-person="2"
+                        aria-haspopup="dialog" aria-label="Découvrir le rôle de Mouha"><span class="person-image"><img
+                                src="person-2.webp" alt="Portrait d’illustration de Mouha" loading="lazy" width="480"
+                                height="640"></span>
+                        <h3>Mouha</h3><span class="team-role">Responsable production</span><span
+                            class="person-more">Découvrir son rôle</span>
+                    </button></article>
+                <article class="team-member"><button type="button" class="person-card" data-person="3"
+                        aria-haspopup="dialog" aria-label="Découvrir le rôle de Abdel"><span class="person-image"><img
+                                src="person-3.webp" alt="Portrait d’illustration de Abdel" loading="lazy" width="480"
+                                height="640"></span>
+                        <h3>Abdel</h3><span class="team-role">Responsable qualité</span><span
+                            class="person-more">Découvrir son rôle</span>
+                    </button></article>
+                <article class="team-member"><button type="button" class="person-card" data-person="4"
+                        aria-haspopup="dialog" aria-label="Découvrir le rôle de Modou"><span class="person-image"><img
+                                src="person-4.webp" alt="Portrait d’illustration de Modou" loading="lazy" width="480"
+                                height="640"></span>
+                        <h3>Modou</h3><span class="team-role">Responsable logistique & export</span><span
+                            class="person-more">Découvrir son rôle</span>
+                    </button></article>
+            </div>
+            <p class="team-note">Portraits d’illustration.</p>
+            <div class="team-foot"><a href="#contact">Contacter notre équipe</a></div>
+        </section>
+        <section id="contact" class="section contact">
+            <div>
+                <div class="eyebrow">Contact</div>
+                <h2>Votre prochain<br>projet prend<br><em>racine ici.</em></h2>
+                <p>Indiquez votre besoin. Copiez la demande pour la transmettre à votre contact.</p>
+            </div>
+            <form id="request"><label>Votre nom<input name="nom" autocomplete="name" required></label><label>Votre
+                    entreprise<input name="entreprise" autocomplete="organization" required></label><label
+                    class="wide">Adresse e-mail<input name="email" type="email" autocomplete="email"
+                        required></label><label>Produit<select name="produit" id="selected">
+                        <option>Mangue</option>
+                        <option>Noix de cajou</option>
+                        <option>Hibiscus</option>
+                        <option>Autre produit</option>
+                    </select></label><label>Pays de destination<input name="pays" autocomplete="country-name"
+                        required></label><label class="wide">Votre besoin<textarea name="besoin" rows="3"
+                        placeholder="Format, volume souhaité, échéance…" required></textarea></label><button
+                    class="pill wide" type="submit">Préparer ma demande</button>
+                <p class="wide" id="result" role="status" aria-live="polite"></p><button id="copy" type="button"
+                    class="pill wide">Copier le récapitulatif</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-top"><a class="brand" href="#">TERANGA<small>AGRICULTURE & EXPORT</small></a>
+            <p>Des racines fortes. De nouveaux horizons.</p>
+        </div>
+        <div class="footer-bottom"><span>© 2026 TERANGA · Concept de présentation</span><a href="#contact">Nous
+                contacter</a></div>
+    </footer>
+    <dialog class="detail" id="detail"><button class="close" aria-label="Fermer la fiche produit">Fermer</button>
+        <div class="eyebrow">La sélection Teranga</div>
+        <h2 id="detail-title"></h2>
+        <p id="detail-description"></p>
+        <dl>
+            <dt>Conditionnement</dt>
+            <dd>Sur demande</dd>
+            <dt>Disponibilité</dt>
+            <dd>À confirmer</dd>
+            <dt>Volumes</dt>
+            <dd>Sur demande</dd>
+        </dl><button id="inquire" class="pill">Préparer une demande</button>
+    </dialog>
+    <dialog id="person-detail" class="detail person-detail" aria-labelledby="person-name"
+        aria-describedby="person-mission"><button type="button" class="close"
+            aria-label="Fermer la fiche de la personne">Fermer</button>
+        <div class="person-detail-layout"><img class="person-detail-photo" id="person-photo" alt="">
+            <div class="person-detail-copy">
+                <h2 id="person-name"></h2><span class="team-role" id="person-role"></span>
+                <p id="person-mission"></p>
+                <ul id="person-tasks"></ul><a class="pill" href="#contact" id="person-contact">Contacter l’équipe</a>
+            </div>
+        </div>
+    </dialog>
+    <script src="gsap.min.js"></script>
+    <script src="ScrollTrigger.min.js"></script>
+    <script>
+
+        function layoutMasonry() { const grid = document.querySelector('.catalog'); const mobile = matchMedia('(max-width:640px)').matches; const gap = 20, row = 8; grid.querySelectorAll(':scope > article').forEach(tile => { if (tile.hidden) return; tile.style.gridRowEnd = mobile ? 'auto' : 'span ' + Math.ceil((tile.querySelector('.tile-content').getBoundingClientRect().height + gap) / (row + gap)) }); }
+        const masonryObserver = new ResizeObserver(() => { layoutMasonry(); if (window.ScrollTrigger) ScrollTrigger.refresh() }); document.querySelectorAll('.catalog .tile-content').forEach(el => masonryObserver.observe(el)); window.addEventListener('resize', layoutMasonry); document.fonts.ready.then(layoutMasonry); layoutMasonry();
+        const menu = document.querySelector('#menu'), nav = document.querySelector('#nav'); menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.textContent = open ? 'Fermer' : 'Menu' }); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.textContent = 'Menu' }));
+        document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('.filter').forEach(b => b.setAttribute('aria-pressed', String(b === button))); document.querySelectorAll('.catalog > article').forEach(p => p.hidden = button.dataset.filter !== 'all' && p.dataset.category !== button.dataset.filter); layoutMasonry(); if (window.ScrollTrigger) ScrollTrigger.refresh() }));
+        const descriptions = { 'Mangue': 'Mangue fraîche ou séchée. Format et volumes sur demande.', 'Noix de cajou': 'Cajou brute ou décortiquée. Préparation et volumes sur demande.', 'Hibiscus': 'Calices séchés pour boissons et infusions. Conditionnement sur demande.' }; const detail = document.querySelector('#detail'); let chosen = 'Mangue'; document.querySelectorAll('[data-product]').forEach(b => b.addEventListener('click', () => { chosen = b.dataset.product; document.querySelector('#detail-title').textContent = chosen; document.querySelector('#detail-description').textContent = descriptions[chosen]; detail.showModal() })); detail.querySelector('.close').onclick = () => detail.close(); detail.addEventListener('click', e => { if (e.target === detail) { const r = detail.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) detail.close() } }); document.querySelector('#inquire').onclick = () => { document.querySelector('#selected').value = chosen; detail.close(); document.querySelector('#contact').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); document.querySelector('input[name=nom]').focus({ preventScroll: true }) };
+        const people = [["Badou", "Directeur général", "Pilote l’entreprise et ses partenariats.", ["Définir les orientations de TERANGA", "Coordonner les équipes", "Développer les partenariats"]], ["Habib", "Responsable commercial", "Accompagne les clients, du besoin à la commande.", ["Identifier les besoins et les volumes", "Préparer les offres commerciales", "Assurer le suivi des commandes"]], ["Mouha", "Responsable production", "Organise la préparation et la transformation des récoltes.", ["Planifier la production", "Superviser la transformation", "Coordonner le conditionnement"]], ["Abdel", "Responsable qualité", "Veille à la conformité des produits à chaque étape.", ["Contrôler les lots", "Suivre la traçabilité", "Vérifier les conditions de conservation"]], ["Modou", "Responsable logistique & export", "Coordonne les expéditions jusqu’à destination.", ["Organiser le transport", "Préparer les documents d’export", "Suivre les livraisons"]]]; const personDialog = document.querySelector('#person-detail'); document.querySelectorAll('[data-person]').forEach(button => button.addEventListener('click', () => { const i = Number(button.dataset.person), [name, role, mission, tasks] = people[i]; document.querySelector('#person-name').textContent = name; document.querySelector('#person-role').textContent = role; document.querySelector('#person-mission').textContent = mission; const photo = document.querySelector('#person-photo'); photo.src = 'person-' + i + '.webp'; photo.alt = 'Portrait d’illustration de ' + name; document.querySelector('#person-tasks').replaceChildren(...tasks.map(text => { const li = document.createElement('li'); li.textContent = text; return li })); personDialog.showModal() })); personDialog.querySelector('.close').addEventListener('click', () => personDialog.close()); personDialog.addEventListener('click', e => { if (e.target === personDialog) { const r = personDialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) personDialog.close() } }); document.querySelector('#person-contact').addEventListener('click', () => personDialog.close());
+        let recap = ''; document.querySelector('#request').addEventListener('submit', e => { e.preventDefault(); const d = new FormData(e.target); recap = 'Demande professionnelle — TERANGA\n\nNom : ' + d.get('nom') + '\nEntreprise : ' + d.get('entreprise') + '\nE-mail : ' + d.get('email') + '\nProduit : ' + d.get('produit') + '\nDestination : ' + d.get('pays') + '\nBesoin : ' + d.get('besoin'); document.querySelector('#result').textContent = 'Votre demande est prête. Aucun message n’a été envoyé.\n\n' + recap; document.querySelector('#copy').style.display = 'inline-flex' }); document.querySelector('#copy').onclick = async () => { try { await navigator.clipboard.writeText(recap); document.querySelector('#copy').textContent = 'Récapitulatif copié' } catch { document.querySelector('#copy').textContent = 'Sélectionnez le récapitulatif pour le copier' } };
+        if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) { gsap.registerPlugin(ScrollTrigger); gsap.from('.hero-content > *', { y: 35, opacity: 0, duration: 1.1, stagger: .16, ease: 'power3.out' }); gsap.fromTo('.hero>img', { scale: 1.08 }, { scale: 1, duration: 2.5, ease: 'power2.out' }); gsap.utils.toArray('.intro h2,.intro p,.section-heading,.service,.export h2,.step,.team-heading,.team-member,.contact h2').forEach(el => gsap.from(el, { y: 35, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } })); gsap.to('.landscape img', { yPercent: -15, ease: 'none', scrollTrigger: { trigger: '.landscape', start: 'top bottom', end: 'bottom top', scrub: true } }) }
+    </script>
+</body>
+
+</html>
