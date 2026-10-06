@@ -1627,14 +1627,20 @@
             gsap.from('.hero-content > *', { y: 35, opacity: 0, duration: 1.1, stagger: .16, ease: 'power3.out' });
             gsap.fromTo('.hero>img', { scale: 1.08 }, { scale: 1, duration: 2.5, ease: 'power2.out' });
             gsap.utils.toArray('.intro h2,.intro p,.section-heading,.service,.export h2,.step,.team-heading,.contact h2').forEach(el => gsap.from(el, { y: 35, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }));
-            gsap.from('.team-member', {
-                y: 64,
-                opacity: 0,
-                duration: 1.1,
-                stagger: .14,
-                ease: 'power3.out',
-                clearProps: 'transform,opacity',
-                scrollTrigger: { trigger: teamGrid, start: 'top 50%', once: true }
+            gsap.matchMedia().add({
+                mobile: '(max-width:640px)',
+                desktop: '(min-width:641px)'
+            }, context => {
+                const mobile = context.conditions.mobile;
+                gsap.from('.team-member', {
+                    y: mobile ? 35 : 64,
+                    opacity: 0,
+                    duration: mobile ? .8 : 1.1,
+                    stagger: mobile ? 0 : .14,
+                    ease: mobile ? 'power2.out' : 'power3.out',
+                    clearProps: 'transform,opacity',
+                    scrollTrigger: { trigger: teamGrid, start: mobile ? 'top 35%' : 'top 50%', once: true }
+                });
             });
             gsap.to('.landscape img', { yPercent: -15, ease: 'none', scrollTrigger: { trigger: '.landscape', start: 'top bottom', end: 'bottom top', scrub: true } });
         }
