@@ -1184,9 +1184,10 @@
 
         .person-detail-photo {
             width: 100%;
-            height: 100%;
-            min-height: 430px;
-            object-fit: cover
+            height: auto;
+            align-self: start;
+            object-fit: contain;
+            background: #bdc6b5
         }
 
         .person-detail-copy {
@@ -1240,8 +1241,35 @@
 
         @media(max-width:640px) {
             .team-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 28px 16px
+                grid-template-columns: none;
+                grid-auto-flow: column;
+                grid-auto-columns: 82%;
+                gap: 16px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 8px;
+                overscroll-behavior-x: contain;
+                margin: -8px;
+                padding: 8px 8px 24px;
+                scrollbar-width: thin;
+                scrollbar-color: #7a896e transparent;
+                cursor: grab
+            }
+
+            .team-member {
+                scroll-snap-align: start
+            }
+
+            .team-grid .person-card {
+                cursor: inherit;
+                user-select: none;
+                -webkit-user-select: none
+            }
+
+            .team-grid.is-dragging {
+                cursor: grabbing;
+                scroll-snap-type: none;
+                scroll-behavior: auto
             }
 
             .person-card h3 {
@@ -1257,9 +1285,7 @@
             }
 
             .person-detail-photo {
-                height: 230px;
-                min-height: 0;
-                object-position: center 30%
+                max-height: 48svh
             }
 
             .person-detail-copy {
@@ -1520,7 +1546,7 @@
     <dialog id="person-detail" class="detail person-detail" aria-labelledby="person-name"
         aria-describedby="person-mission"><button type="button" class="close"
             aria-label="Fermer la fiche de la personne">Fermer</button>
-        <div class="person-detail-layout"><img class="person-detail-photo" id="person-photo" alt="">
+        <div class="person-detail-layout"><img class="person-detail-photo" id="person-photo" alt="" width="480" height="640">
             <div class="person-detail-copy">
                 <h2 id="person-name"></h2><span class="team-role" id="person-role"></span>
                 <p id="person-mission"></p>
@@ -1532,6 +1558,63 @@
     <script src="ScrollTrigger.min.js"></script>
     <script>
 
+        const teamGrid = document.querySelector('.team-grid');
+        const mobileTeam = matchMedia('(max-width:640px)');
+        let teamDrag = null;
+        let suppressTeamClick = false;
+
+        // Keep native touch scrolling (including momentum and vertical page scrolling).
+        // Only mouse dragging needs custom handling; capture starts after a real movement.
+        teamGrid.addEventListener('dragstart', event => event.preventDefault());
+        teamGrid.addEventListener('pointerdown', event => {
+            if (!event.isPrimary || event.button !== 0) return;
+            suppressTeamClick = false;
+            if (!mobileTeam.matches || event.pointerType !== 'mouse') return;
+            teamDrag = {
+                id: event.pointerId,
+                x: event.clientX,
+                y: event.clientY,
+                scrollLeft: teamGrid.scrollLeft,
+                moved: false
+            };
+        });
+        window.addEventListener('pointermove', event => {
+            if (!teamDrag || event.pointerId !== teamDrag.id) return;
+            const dx = event.clientX - teamDrag.x;
+            const dy = event.clientY - teamDrag.y;
+            if (!teamDrag.moved) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) < 8) return;
+                if (Math.abs(dy) > Math.abs(dx)) {
+                    teamDrag = null;
+                    return;
+                }
+                teamDrag.moved = true;
+                suppressTeamClick = true;
+                teamGrid.classList.add('is-dragging');
+                teamGrid.setPointerCapture(event.pointerId);
+            }
+            event.preventDefault();
+            teamGrid.scrollLeft = teamDrag.scrollLeft - dx;
+        });
+        function finishTeamDrag() {
+            if (!teamDrag) return;
+            const { id } = teamDrag;
+            teamDrag = null;
+            teamGrid.classList.remove('is-dragging');
+            if (teamGrid.hasPointerCapture(id)) teamGrid.releasePointerCapture(id);
+        }
+        window.addEventListener('pointerup', finishTeamDrag);
+        window.addEventListener('pointercancel', finishTeamDrag);
+        window.addEventListener('blur', finishTeamDrag);
+        teamGrid.addEventListener('lostpointercapture', finishTeamDrag);
+        mobileTeam.addEventListener('change', finishTeamDrag);
+        teamGrid.addEventListener('click', event => {
+            // Keyboard activation has detail === 0 and must always remain available.
+            if (!suppressTeamClick || event.detail === 0) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        }, true);
+
         function layoutMasonry() { const grid = document.querySelector('.catalog'); const mobile = matchMedia('(max-width:640px)').matches; const gap = 20, row = 8; grid.querySelectorAll(':scope > article').forEach(tile => { if (tile.hidden) return; tile.style.gridRowEnd = mobile ? 'auto' : 'span ' + Math.ceil((tile.querySelector('.tile-content').getBoundingClientRect().height + gap) / (row + gap)) }); }
         const masonryObserver = new ResizeObserver(() => { layoutMasonry(); if (window.ScrollTrigger) ScrollTrigger.refresh() }); document.querySelectorAll('.catalog .tile-content').forEach(el => masonryObserver.observe(el)); window.addEventListener('resize', layoutMasonry); document.fonts.ready.then(layoutMasonry); layoutMasonry();
         const menu = document.querySelector('#menu'), nav = document.querySelector('#nav'); menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.textContent = open ? 'Fermer' : 'Menu' }); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.textContent = 'Menu' }));
@@ -1539,7 +1622,22 @@
         const descriptions = { 'Mangue': 'Mangue fraîche ou séchée. Format et volumes sur demande.', 'Noix de cajou': 'Cajou brute ou décortiquée. Préparation et volumes sur demande.', 'Hibiscus': 'Calices séchés pour boissons et infusions. Conditionnement sur demande.' }; const detail = document.querySelector('#detail'); let chosen = 'Mangue'; document.querySelectorAll('[data-product]').forEach(b => b.addEventListener('click', () => { chosen = b.dataset.product; document.querySelector('#detail-title').textContent = chosen; document.querySelector('#detail-description').textContent = descriptions[chosen]; detail.showModal() })); detail.querySelector('.close').onclick = () => detail.close(); detail.addEventListener('click', e => { if (e.target === detail) { const r = detail.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) detail.close() } }); document.querySelector('#inquire').onclick = () => { document.querySelector('#selected').value = chosen; detail.close(); document.querySelector('#contact').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); document.querySelector('input[name=nom]').focus({ preventScroll: true }) };
         const people = [["Badou", "Directeur général", "Pilote l’entreprise et ses partenariats.", ["Définir les orientations de TERANGA", "Coordonner les équipes", "Développer les partenariats"]], ["Habib", "Responsable commercial", "Accompagne les clients, du besoin à la commande.", ["Identifier les besoins et les volumes", "Préparer les offres commerciales", "Assurer le suivi des commandes"]], ["Mouha", "Responsable production", "Organise la préparation et la transformation des récoltes.", ["Planifier la production", "Superviser la transformation", "Coordonner le conditionnement"]], ["Abdel", "Responsable qualité", "Veille à la conformité des produits à chaque étape.", ["Contrôler les lots", "Suivre la traçabilité", "Vérifier les conditions de conservation"]], ["Modou", "Responsable logistique & export", "Coordonne les expéditions jusqu’à destination.", ["Organiser le transport", "Préparer les documents d’export", "Suivre les livraisons"]]]; const personDialog = document.querySelector('#person-detail'); document.querySelectorAll('[data-person]').forEach(button => button.addEventListener('click', () => { const i = Number(button.dataset.person), [name, role, mission, tasks] = people[i]; document.querySelector('#person-name').textContent = name; document.querySelector('#person-role').textContent = role; document.querySelector('#person-mission').textContent = mission; const photo = document.querySelector('#person-photo'); photo.src = 'person-' + i + '.webp'; photo.alt = 'Portrait d’illustration de ' + name; document.querySelector('#person-tasks').replaceChildren(...tasks.map(text => { const li = document.createElement('li'); li.textContent = text; return li })); personDialog.showModal() })); personDialog.querySelector('.close').addEventListener('click', () => personDialog.close()); personDialog.addEventListener('click', e => { if (e.target === personDialog) { const r = personDialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) personDialog.close() } }); document.querySelector('#person-contact').addEventListener('click', () => personDialog.close());
         let recap = ''; document.querySelector('#request').addEventListener('submit', e => { e.preventDefault(); const d = new FormData(e.target); recap = 'Demande professionnelle — TERANGA\n\nNom : ' + d.get('nom') + '\nEntreprise : ' + d.get('entreprise') + '\nE-mail : ' + d.get('email') + '\nProduit : ' + d.get('produit') + '\nDestination : ' + d.get('pays') + '\nBesoin : ' + d.get('besoin'); document.querySelector('#result').textContent = 'Votre demande est prête. Aucun message n’a été envoyé.\n\n' + recap; document.querySelector('#copy').style.display = 'inline-flex' }); document.querySelector('#copy').onclick = async () => { try { await navigator.clipboard.writeText(recap); document.querySelector('#copy').textContent = 'Récapitulatif copié' } catch { document.querySelector('#copy').textContent = 'Sélectionnez le récapitulatif pour le copier' } };
-        if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) { gsap.registerPlugin(ScrollTrigger); gsap.from('.hero-content > *', { y: 35, opacity: 0, duration: 1.1, stagger: .16, ease: 'power3.out' }); gsap.fromTo('.hero>img', { scale: 1.08 }, { scale: 1, duration: 2.5, ease: 'power2.out' }); gsap.utils.toArray('.intro h2,.intro p,.section-heading,.service,.export h2,.step,.team-heading,.team-member,.contact h2').forEach(el => gsap.from(el, { y: 35, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } })); gsap.to('.landscape img', { yPercent: -15, ease: 'none', scrollTrigger: { trigger: '.landscape', start: 'top bottom', end: 'bottom top', scrub: true } }) }
+        if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.from('.hero-content > *', { y: 35, opacity: 0, duration: 1.1, stagger: .16, ease: 'power3.out' });
+            gsap.fromTo('.hero>img', { scale: 1.08 }, { scale: 1, duration: 2.5, ease: 'power2.out' });
+            gsap.utils.toArray('.intro h2,.intro p,.section-heading,.service,.export h2,.step,.team-heading,.contact h2').forEach(el => gsap.from(el, { y: 35, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }));
+            gsap.from('.team-member', {
+                y: 64,
+                opacity: 0,
+                duration: 1.1,
+                stagger: .14,
+                ease: 'power3.out',
+                clearProps: 'transform,opacity',
+                scrollTrigger: { trigger: teamGrid, start: 'top 50%', once: true }
+            });
+            gsap.to('.landscape img', { yPercent: -15, ease: 'none', scrollTrigger: { trigger: '.landscape', start: 'top bottom', end: 'bottom top', scrub: true } });
+        }
     </script>
 </body>
 
